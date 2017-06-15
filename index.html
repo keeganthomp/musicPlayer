@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="main.css" rel="stylesheet">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://connect.soundcloud.com/sdk/sdk-3.1.2.js"></script>
+</head>
+
+<body>
+    <div class="siteWrapper">
+        <div class="topWrapper">
+            <h1>Really Awesome Music Site</h1>
+            <audio controls="controls">
+                <source src="track.ogg" type="audio/ogg" />
+                <source src="track.mp3" type="audio/mpeg" /> Your browser does not support the audio element.
+            </audio>
+            <p class="nowPlaying">Now Playing: <span id="artistPlaying">Keegan Thompson - Song</span></p>
+
+            <hr class="break">
+            <form>
+                <div class="searchWrapper">
+                    <input type="text" name="search" class="searchBar" value="" placeholder="Search For Artist">
+                    <button class="searchBtn">Search</button>
+            </form>
+            </div>
+            <hr class="break">
+
+        </div>
+        <div class="searchResultsSection">
+            <h2 class="resultsTitle">Search Results:</h2>
+            <div class=searchResults>
+
+
+
+            </div>
+        </div>
+
+
+
+
+    </div>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
