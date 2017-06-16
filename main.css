@@ -28,7 +28,7 @@ audio {
     height: 2rem;
 }
 
-.searchWrapper button {
+.searchWrapper .searchBtn {
     flex: 1;
     border-radius: 5px;
     border: none;
@@ -43,4 +43,17 @@ audio {
 .resultsTitle {
     margin-left: 10%;
     font-size: 15px;
+}
+
+
+.searchResults {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 5% 0 5%;
+}
+
+.trackWrapper {
+    border: 1px solid red;
+    width: 15%;
+    margin: 0 2% 8% 2% ;
 }
