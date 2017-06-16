@@ -47,13 +47,28 @@ audio {
 
 
 .searchResults {
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
-    margin: 0 5% 0 5%;
+    /*margin: 0 5% 0 5%;*/
+    align-items: flex-start;
+    justify-content: space-around;
 }
 
 .trackWrapper {
-    border: 1px solid red;
-    width: 15%;
+    width: calc(100% / 4);
     margin: 0 2% 8% 2% ;
+}
+
+
+.userImg {
+    width: 100%;
+}
+
+.userImg:hover {
+    cursor: pointer;
+}
+
+.searchResultsSection {
+    margin: 0 auto;
 }

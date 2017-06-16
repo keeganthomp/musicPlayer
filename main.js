@@ -1,24 +1,33 @@
 var button = document.querySelector(".searchBtn");
 var searchInput = document.querySelector(".searchBar");
 var submitBtn = document.querySelector(".searchBtn");
-var urlSc =
-  "http://api.soundcloud.com/users/52955/tracks?client_id=095fe1dcd09eb3d0e1d3d89c76f5618f";
+const URL = "https://api.soundcloud.com/tracks/";
+const QUERY = "?q=";
+const APIKEY = "client_id=8538a1744a7fdaa59981232897501e04";
 var searchResultsContainer = document.querySelector(".searchResults");
+var finalResults = [];
+var trackContainers;
 
-const API_KEY = "?client_id=095fe1dcd09eb3d0e1d3d89c76f5618f";
+submitBtn.addEventListener("click", function() {
+  clearResults();
+  var userInput = searchInput.value.replace(/\s+/g, "-").toLowerCase();
+  axios
+    .get(URL + QUERY + userInput + "&" + APIKEY)
+    .then(function(response) {
+      finalResults = response.data;
+      console.log("finalResults:", finalResults);
+      for (let i = 0; i < finalResults.length; i++) {
+        createTracks(finalResults[i]);
+      }
+    })
+    .catch(function() {
+      console.log("Nothing Here");
+    });
+});
 
-function executeSearch(url) {
-  var urlSc =
-    "http://api.soundcloud.com/users/52955/tracks?client_id=095fe1dcd09eb3d0e1d3d89c76f5618f";
-  axios.get(url).then(function(response) {
-    console.log(response.data);
-    for (let i = 0; i < 15; i++) {
-      createTracks(response.data[i]);
-    }
-  });
+function clearResults() {
+  searchResultsContainer.innerHTML = "";
 }
-
-executeSearch(urlSc);
 
 function createTracks(data) {
   function makeTrackWrapper() {
@@ -29,8 +38,13 @@ function createTracks(data) {
     var createArtistImage = document.createElement("img");
     createArtistImage.classList.add("userImg");
     createTrackWrapper.appendChild(createArtistImage);
-    createArtistImage.src = data.user.avatar_url;
-    
+    if (!data.artwork_url) {
+      createArtistImage.src =
+        "http://www.i-dedicate.com/media/profile_images/default.png";
+    } else {
+      createArtistImage.src = data.artwork_url;
+    }
+
     var createSongTitle = document.createElement("p");
     createSongTitle.classList.add("songTitle");
     createTrackWrapper.appendChild(createSongTitle);
@@ -40,8 +54,15 @@ function createTracks(data) {
     createUserName.classList.add("userName");
     createTrackWrapper.appendChild(createUserName);
     createUserName.innerHTML = data.user.username;
-    
-
   }
+
+  trackContainers = document.querySelectorAll(".trackWrapper");
+  console.log("TrackContainers:", trackContainers);
+//   for(let k = 0; k < trackContainers.length; k++){
+//       trackContainers[i].addEventListener("click", function(){
+//           console.log("looping:",trackContainers[i]);
+//       })
+//   }
+
   makeTrackWrapper();
 }
