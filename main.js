@@ -15,14 +15,14 @@ submitBtn.addEventListener("click", function() {
     .get(URL + QUERY + userInput + "&" + APIKEY)
     .then(function(response) {
       finalResults = response.data;
-      console.log("finalResults:", finalResults);
+      console.log(finalResults);
       for (let i = 0; i < finalResults.length; i++) {
         createTracks(finalResults[i]);
         for (let j = i; j < trackContainers.length; j++) {
           trackContainers[j].addEventListener("click", function() {
             var pickedSong = finalResults[i].stream_url + "?" + APIKEY;
-            console.log(pickedSong);
             playClickedSong(pickedSong);
+            updateNowPlaying(finalResults[i].user.username, finalResults[i].title);
           });
         }
       }
@@ -31,10 +31,6 @@ submitBtn.addEventListener("click", function() {
       console.log("Nothing Here");
     });
 });
-
-function clearResults() {
-  searchResultsContainer.innerHTML = "";
-}
 
 function createTracks(data) {
   function makeTrackWrapper() {
@@ -63,13 +59,22 @@ function createTracks(data) {
     createTrackWrapper.appendChild(createUserName);
     createUserName.innerHTML = data.user.username;
   }
-
   makeTrackWrapper();
 }
 
 function playClickedSong(song) {
   var audioSource = document.querySelector("#audioSource");
   audioSource.src = song;
-  var audioController = document.querySelector("#audioController");  
+  var audioController = document.querySelector("#audioController");
   audioController.load();
 }
+
+function updateNowPlaying(currentArtist, currentSong){
+    document.querySelector("#artistPlaying").innerHTML = currentArtist + " ";
+    document.querySelector("#songPlayingNow").innerHTML = currentSong;
+}
+
+function clearResults() {
+  searchResultsContainer.innerHTML = "";
+}
+
