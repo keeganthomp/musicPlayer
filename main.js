@@ -10,6 +10,7 @@ var trackContainers = [];
 
 submitBtn.addEventListener("click", function() {
   clearResults();
+  moveTitleUp();
   var userInput = searchInput.value.replace(/\s+/g, "-").toLowerCase();
   axios
     .get(URL + QUERY + userInput + "&" + APIKEY)
@@ -21,6 +22,7 @@ submitBtn.addEventListener("click", function() {
         for (let j = i; j < trackContainers.length; j++) {
           trackContainers[j].addEventListener("click", function() {
             var pickedSong = finalResults[i].stream_url + "?" + APIKEY;
+            showElement("#audioController")
             playClickedSong(pickedSong);
             updateNowPlaying(finalResults[i].user.username, finalResults[i].title);
           });
@@ -60,6 +62,7 @@ function createTracks(data) {
     createUserName.innerHTML = data.user.username;
   }
   makeTrackWrapper();
+  showElement(".resultsTitle");
 }
 
 function playClickedSong(song) {
@@ -70,7 +73,7 @@ function playClickedSong(song) {
 }
 
 function updateNowPlaying(currentArtist, currentSong){
-    document.querySelector("#artistPlaying").innerHTML = currentArtist + " ";
+    document.querySelector("#artistPlaying").innerHTML = "Now Playing: " + currentArtist + " ";
     document.querySelector("#songPlayingNow").innerHTML = currentSong;
 }
 
@@ -78,3 +81,12 @@ function clearResults() {
   searchResultsContainer.innerHTML = "";
 }
 
+function showElement(el) {
+  var element = document.querySelector(el);
+  element.classList.remove("hidden");
+}
+
+function moveTitleUp() {
+  var title = document.querySelector(".title");
+  title.style.margin = "4% 0 0 0";
+}

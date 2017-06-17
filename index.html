@@ -9,29 +9,31 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
     <script src="https://connect.soundcloud.com/sdk/sdk-3.1.2.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Oxygen|Quicksand:300,400,500,700" rel="stylesheet">
 </head>
 
 <body>
     <div class="siteWrapper">
         <div class="topWrapper">
-            <h1>Really Awesome Music Site</h1>
-            <audio id="audioController" controls="controls" autoplay = "true">
+            <h1 class="title">WAVVES</h1>
+            <p class="subTitle">The Future Of Searching Audio<p>
+            <audio id="audioController" class="hidden" controls="controls" autoplay = "true">
                 <source id="audioSource" src="" type="audio/ogg" />
                 <!--<source src="" type="audio/mpeg" /> Your browser does not support the audio element.-->
             </audio>
-            <p class="nowPlaying">Now Playing: <span id="artistPlaying"></span><span id="songPlayingNow"></span></p>
+            <p class="nowPlaying"><span id="artistPlaying"></span><span id="songPlayingNow"></span></p>
 
-            <hr class="break">
+            <hr class="break hidden">
             
                 <div class="searchWrapper">
-                    <input type="text" name="search" class="searchBar" value="" placeholder="Search For Artist">
+                    <input type="text" name="search" class="searchBar" value="" placeholder="Search For Artist" onfocus="this.placeholder = ''">
                     <input type="button" class="searchBtn" value="submit">
             
             </div>
-            <hr class="break">
+            <hr class="break hidden">
         </div>
         <div class="searchResultsSection">
-            <h2 class="resultsTitle">Search Results:</h2>
+            <h2 class="resultsTitle hidden">Search Results:</h2>
             <div class="searchResults">
             </div>
         </div>
