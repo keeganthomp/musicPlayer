@@ -6,7 +6,7 @@ const QUERY = "?q=";
 const APIKEY = "client_id=8538a1744a7fdaa59981232897501e04";
 var searchResultsContainer = document.querySelector(".searchResults");
 var finalResults = [];
-var trackContainers;
+var trackContainers = [];
 
 submitBtn.addEventListener("click", function() {
   clearResults();
@@ -18,6 +18,13 @@ submitBtn.addEventListener("click", function() {
       console.log("finalResults:", finalResults);
       for (let i = 0; i < finalResults.length; i++) {
         createTracks(finalResults[i]);
+        for (let j = i; j < trackContainers.length; j++) {
+          trackContainers[j].addEventListener("click", function() {
+            var pickedSong = finalResults[i].stream_url + "?" + APIKEY;
+            console.log(pickedSong);
+            playClickedSong(pickedSong);
+          });
+        }
       }
     })
     .catch(function() {
@@ -34,6 +41,7 @@ function createTracks(data) {
     var createTrackWrapper = document.createElement("div");
     createTrackWrapper.classList.add("trackWrapper");
     searchResultsContainer.appendChild(createTrackWrapper);
+    trackContainers.push(createTrackWrapper);
 
     var createArtistImage = document.createElement("img");
     createArtistImage.classList.add("userImg");
@@ -56,13 +64,12 @@ function createTracks(data) {
     createUserName.innerHTML = data.user.username;
   }
 
-  trackContainers = document.querySelectorAll(".trackWrapper");
-  console.log("TrackContainers:", trackContainers);
-//   for(let k = 0; k < trackContainers.length; k++){
-//       trackContainers[i].addEventListener("click", function(){
-//           console.log("looping:",trackContainers[i]);
-//       })
-//   }
-
   makeTrackWrapper();
+}
+
+function playClickedSong(song) {
+  var audioSource = document.querySelector("#audioSource");
+  audioSource.src = song;
+  var audioController = document.querySelector("#audioController");  
+  audioController.load();
 }

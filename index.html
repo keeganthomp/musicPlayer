@@ -15,9 +15,9 @@
     <div class="siteWrapper">
         <div class="topWrapper">
             <h1>Really Awesome Music Site</h1>
-            <audio controls="controls">
-                <source src="https://api.soundcloud.com/tracks/5684831/stream?client_id=8538a1744a7fdaa59981232897501e04" type="audio/ogg" />
-                <source src="https://soundcloud.com/chancetherapper/no-problem-feat-lil-wayne-2-chainz" type="audio/mpeg" /> Your browser does not support the audio element.
+            <audio id="audioController" controls="controls" autoplay = "true">
+                <source id="audioSource" src="" type="audio/ogg" />
+                <!--<source src="" type="audio/mpeg" /> Your browser does not support the audio element.-->
             </audio>
             <p class="nowPlaying">Now Playing: <span id="artistPlaying">Keegan Thompson - Song</span></p>
 
