@@ -25,6 +25,16 @@ h1 {
   margin: 0;
 }
 
+.songTitle {
+  font-weight: 300;
+}
+
+.userName {
+  font-weight: 400;
+  font-size: 1.4rem;
+  letter-spacing: 2px;
+}
+
 audio {
   margin: 0 auto;
   width: 80%;
@@ -78,6 +88,20 @@ audio {
   background: none;
   color: white;
   margin-top: 2.5%;
+}
+
+.searchBtn {
+  transition: background .5s ease;  
+}
+
+.searchBtn:focus{
+  outline: none;
+}
+
+.searchBtn:hover {
+  background: lightgray;
+  color: black;
+  transition: background .5s ease;
 }
 
 .nowPlaying {
