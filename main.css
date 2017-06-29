@@ -135,8 +135,24 @@ audio {
   width: 100%;
 }
 
+
 .userImg:hover {
   cursor: pointer;
+  opacity: .2;
+  transition: all 1s;
+  z-index: 0;
+}
+
+.playButton {
+  position:relative;
+  top: 7rem;
+  opacity: 0;
+}
+
+.playButton:hover {
+  opacity: 1;
+  transition: all 2s;
+  z-index: 1;
 }
 
 .searchResultsSection {

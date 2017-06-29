@@ -41,6 +41,12 @@ function createTracks(data) {
     searchResultsContainer.appendChild(createTrackWrapper);
     trackContainers.push(createTrackWrapper);
 
+    var createPlayButton = document.createElement("p");
+    createPlayButton.classList.add("playButton");
+    createTrackWrapper.appendChild(createPlayButton);
+    createPlayButton.innerHTML = "PLAY";
+    
+
     var createArtistImage = document.createElement("img");
     createArtistImage.classList.add("userImg");
     createTrackWrapper.appendChild(createArtistImage);
@@ -90,3 +96,17 @@ function moveTitleUp() {
   var title = document.querySelector(".title");
   title.style.margin = "4% 0 0 0";
 }
+
+function showPlayButton(){
+  var playBtn = document.querySelectorAll(".playButton");
+  var titleImg = document.querySelectorAll(".userImg");
+  console.log("working");
+  for(let i = 0; i <titleImg.length; i++){
+    titleImg[i].addEventListener("mouseenter", function(){
+      alert("You entered a track");
+      console.log("yayy");
+    })
+  }
+}
+
+showPlayButton();
